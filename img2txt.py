@@ -15,13 +15,7 @@ os.chdir(path)
 
 def img2txt(fname):
     pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
-    im = Image.open(fname) # the second one 
-    im = im.filter(ImageFilter.MedianFilter())
-    enhancer = ImageEnhance.Contrast(im)
-    im = enhancer.enhance(2)
-    im = im.convert('1')
-    im.save('temp.jpg')
-    text = pytesseract.image_to_string(Image.open('temp.jpg'))
-    os.remove("temp.jpg")
+    text = pytesseract.image_to_string(Image.open(fname))
+
     return(text)
     
